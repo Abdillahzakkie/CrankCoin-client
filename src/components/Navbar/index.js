@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { web3Context } from "../Context";
 import { NavLink, Link } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
-// import { web3Context } from "../Context";
 import './navbar.css';
 
 import { NavbarContainer } from './navbar.styled'
-// import user from '../../assets/user_icon/male.jpg';
+import user from '../../assets/login/userLogin.jpeg';
 
 export function Navbar({ theme }) {
+    const context = useContext(web3Context);
     const [navOpen, setNavOpen] = useState(false);
+
+    const { loading } = context;
 
     const _active = {
         'padding': '.75rem',
@@ -33,9 +36,7 @@ export function Navbar({ theme }) {
         <NavbarContainer className='center navbar' theme={theme}>
             <div className="center nav-brand">
                 <Link to='/'>
-                    {/* <img src={logo} alt="Edumark"/> */}
                     <h2 className='mainSpacing'>
-                        {/* Raid<span> Exchange</span> */}
                         Crankcoin
                     </h2>
                 </Link>
@@ -43,23 +44,11 @@ export function Navbar({ theme }) {
             <div className={ navOpen ? 'center nav-list nav-list-mobile' : 'center nav-list' }>
                 <ul>{Navlist}</ul>
             </div>
-            {/* <div className="center nav-icons">
-                <Link to='/cart' className='center'>
-                    <AiOutlineShoppingCart className='icon' />
-                </Link>
-
-                <Link to={isLoggedIn ? '/products/auth/new' : '/login'}  className={isLoggedIn ? 'center' : 'hide'}>
-                    <BiCloudUpload className='icon' />
-                </Link>
-
-                <Link to={isLoggedIn ? '/products/auth/new' : '/login'} className='center'>
-                    <img 
-                        src={user}
-                        alt="user" 
-                        className={isLoggedIn ? 'online': 'offline'}
-                    />
-                </Link>
-            </div> */}
+            <div className="center nav-icons">
+                <span className='center'>
+                    <img src={user} alt="user" className={!loading ? "online": ""}  />
+                </span>
+            </div>
             <div className="toggle">
                 <FaAlignRight className='icon' onClick={() => setNavOpen(!navOpen)} />
             </div>

@@ -25,7 +25,7 @@ export const Dashboard = () => {
         })()
     }, [context, setUserBalance, loading, balanceOf, fromWei, setLock, locks, setClaimableRewards, checkRewards]);
     
-    let _stakedAmount;
+    let _stakedAmount = 0;
     let _unlockTime;
     const now = Date.now();
 
@@ -33,6 +33,7 @@ export const Dashboard = () => {
         _stakedAmount = Number(getLock.amount);
         _unlockTime = getLock.unlockTime;
     }
+
 
     return (
         <DashboadContainer className="center">
@@ -44,12 +45,12 @@ export const Dashboard = () => {
                 <div className="center card">
                     <h2>Current Balance:</h2>
                     <div />
-                    <h5>{Number(userBalance).toFixed(2)} ENOL</h5>
+                    <h5>{Number(userBalance).toFixed(2)} CKN</h5>
                 </div>
                 <div className="center card">
                     <h2>Staked Balance:</h2>
                     <div />
-                    <h5>{_stakedAmount && _stakedAmount.toFixed(2)} ENOL</h5>
+                    <h5>{Number(_stakedAmount).toFixed(2)} CKN</h5>
                 </div>
                 <div className="center card">
                     <h2>Unlock Time:</h2>
@@ -73,12 +74,12 @@ export const Dashboard = () => {
                 <div className="center card">
                     <h2>Maximum Cap:</h2>
                     <div />
-                    <h5>0.00 ENOL</h5>
+                    <h5>0.00 CKN</h5>
                 </div>
                 <div className="center card">
                     <h2>Total Rewards:</h2>
                     <div />
-                    <h5>0.00 ENOL</h5>
+                    <h5>0.00 CKN</h5>
                 </div>
             </div>
         </DashboadContainer>

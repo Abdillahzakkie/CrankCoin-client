@@ -13,7 +13,7 @@ export const DashboadContainer = styled.div`
         grid-template-rows: auto;
         width: 100vw;
         grid-gap: 2rem;
-        padding: 0 2rem 2rem;
+        padding: 0 2.5rem 2rem 1.5rem;
 
         & .card {
             width: 100%;
