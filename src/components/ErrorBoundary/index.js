@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 
 export const ErrorBoundary = WrappedComponent => {
     class errorBoundary extends Component {

@@ -14,7 +14,7 @@ export function Navbar({ theme }) {
         'padding': '.75rem',
     }
 
-    let Navlist = ['', 'Staking', 'About','Tokenomics'];
+    let Navlist = ['', 'Dashboard', 'Vault', 'Whitepaper', 'FAQ'];
     Navlist = Navlist.map((item, i) => {
         return (
             <NavLink 
