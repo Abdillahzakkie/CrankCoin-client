@@ -28,7 +28,7 @@ export const FooterContainer = styled.div`
         border-bottom-left-radius: .25rem;
         border-bottom-right-radius: 1rem;
     }
-    & .form-control input { width: 75%; }
+    & .form-control input { width: 80%; }
     & .form-control input::placeholder { text-transform: capitalize; }
 
     & .icon { margin: 0 1rem 0 0; font-size: 1.1rem; }
@@ -40,11 +40,11 @@ export const FooterContainer = styled.div`
         @media (max-width: 767px) {
             & { grid-template-columns: 1fr; }
             & .center { height: auto; }
-        }
-
-        @media (max-width: 482px) {
-            & .form-control { display: block; }
             & .form-control input { width: 100%; }
+
+            @media (max-width: 482px) {
+                & .form-control { display: block; }
+            }
         }
     }
 `
