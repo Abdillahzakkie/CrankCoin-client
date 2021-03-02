@@ -18,21 +18,19 @@ export const FooterContainer = styled.div`
     /* & .center small { color: var(--lightGrey); } */
 
     & .form-control { margin: 1rem 0 0; }
-    & .form-control input,
-    & .form-control button {
+    & .form-control input {
         height: 50px;
         padding: 1rem;
         letter-spacing: var(--letterSpacing);
         font-family: cursive;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+        border-bottom-right-radius: 1rem;
     }
     & .form-control input { width: 75%; }
     & .form-control input::placeholder { text-transform: capitalize; }
 
-    & .form-control button {
-        background: var(--mainGreen);
-        color: var(--white);
-        margin: -1px 0 0 -1px;
-    }
     & .icon { margin: 0 1rem 0 0; font-size: 1.1rem; }
     & .icon:hover { color: var(--lightBlue); }
 
@@ -47,10 +45,6 @@ export const FooterContainer = styled.div`
         @media (max-width: 482px) {
             & .form-control { display: block; }
             & .form-control input { width: 100%; }
-            & .form-control button { 
-                margin: .25rem 0 0;
-                width: 40%;
-            }
         }
     }
 `

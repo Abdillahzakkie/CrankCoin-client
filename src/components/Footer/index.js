@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FaLinkedin, FaGithub, FaTelegram, FaTwitter } from "react-icons/fa";
-import { RiSendPlaneFill } from "react-icons/ri";
 import { FooterContainer } from "./footer.styled";
 
 export function Footer() {
@@ -40,11 +39,6 @@ export function Footer() {
                         onChange={e => setEmail(e.target.value)}
                         placeholder='enter email address'
                     />
-                    <button type='submit' className='my'>
-                        <span role='img'>
-                            <RiSendPlaneFill />
-                        </span>
-                    </button>
                 </form>
             </section>
             <section className="center">
