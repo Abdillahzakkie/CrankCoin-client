@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 dumb.txt
+.env
 
 # testing
 /coverage

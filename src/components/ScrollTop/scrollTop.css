@@ -9,8 +9,8 @@ html { scroll-behavior: smooth; }
         background: var(--red);
         color: #fff;
         place-self: center;
-        width: 35px;
-        height: 35px;
+        width: 25px;
+        height: 25px;
         border-radius: .5rem ;
         border: .05rem solid var(--mainWhite);
         cursor: pointer;
