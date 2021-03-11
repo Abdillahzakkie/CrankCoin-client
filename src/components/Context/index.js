@@ -18,8 +18,7 @@ class Web3Provider extends Component {
     }
 
     async componentDidMount() {
-        await this.loadWeb3();
-        await this.loadBlockchainData();
+        await this.connectDapp();
     }
 
     // loadWeb3
@@ -67,6 +66,11 @@ class Web3Provider extends Component {
         }
     }
 
+    connectDapp = async () => {
+        await this.loadWeb3();
+        await this.loadBlockchainData();
+    }
+
     balanceOf = async ({ loading, contract, user } = this.state) => {
         if(loading) return;
         return await contract.balanceOf(user).call();
@@ -97,6 +101,7 @@ class Web3Provider extends Component {
         return (
             <web3Context.Provider value= {{
                 ...this.state,
+                connectDapp: this.connectDapp,
                 fromWei: this.fromWei,
                 toWei: this.toWei,
                 balanceOf: this.balanceOf,

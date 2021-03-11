@@ -8,7 +8,7 @@ export const TransactionList = ({ userTransactionList }) => {
 
     if(userTransactionList) {
         _buildTransaction = userTransactionList.map((item, index) => {
-            const { nonce, from, to, hash, ethGasUsed, cashBackEarned } = item;
+            const { nonce, from, to, hash, ethGasUsed, cashBackEarned, cashbackPercent } = item;
 
             const links = {
                 _hash: `https://etherscan.io/tx/${hash}`,
@@ -34,7 +34,7 @@ export const TransactionList = ({ userTransactionList }) => {
                         </a>
                     </div>
                     <div className="center">{toFixed(ethGasUsed)} USD</div>
-                    <div className="center">3%</div>
+                    <div className="center">{toFixed(cashbackPercent)}%</div>
                     <div className="center">{toFixed(cashBackEarned)} USD</div>
                 </section>
             );
@@ -54,12 +54,6 @@ export const TransactionList = ({ userTransactionList }) => {
                 <div className="center">Cashback Earned</div>
             </section>
             {_buildTransaction ? _buildTransaction : <Loading />}
-            {/* <section className="center container">
-                Hello world
-            </section>
-            <section className="center container">
-                Hello world
-            </section> */}
         </TransactionListContainer>
     )
 }

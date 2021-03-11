@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { web3Context } from "../../Context";
+import { Navbar } from "../../Navbar";
 import { DashboadContainer } from "./dashboard.styled";
 import { ErrorBoundary } from "../../ErrorBoundary";
 import TransactionList from "../../TransactionList";
@@ -52,68 +53,71 @@ export const Dashboard = () => {
     }
 
     return (
-        <DashboadContainer className="center">
-            <div className="center account-details">
-                <h1>Account Details: </h1>
-            </div>
-
-            <div className="center card-container">
-                <div className="center card">
-                    <h2>Current Balance:</h2>
-                    <div />
-                    <h5>{Number(userBalance).toFixed(2)} CKN</h5>
+        <>
+            <Navbar />
+            <DashboadContainer className="center">
+                <div className="center account-details">
+                    <h1>Account Details: </h1>
                 </div>
 
-                <div className="center card">
-                    <h2>Claimable Balance:</h2>
-                    <div />
-                    <h5>{Number(getClaimableRewards).toFixed(2)} CKN</h5>
-                </div>
+                <div className="center card-container">
+                    <div className="center card">
+                        <h2>Current Balance:</h2>
+                        <div />
+                        <h5>{toFixed(userBalance)} CKN</h5>
+                    </div>
 
-                <div className="center card">
-                    <h2>Upcoming Cashback:</h2>
-                    <div />
-                    <h5>{toFixed(_totalUpcomingCashback)} USD</h5>
-                </div>
+                    <div className="center card">
+                        <h2>Claimable Balance:</h2>
+                        <div />
+                        <h5>{Number(getClaimableRewards).toFixed(2)} CKN</h5>
+                    </div>
 
-                <div className="center card">
-                    <h2>Staked Balance:</h2>
-                    <div />
-                    <h5>{Number(_stakedAmount).toFixed(2)} CKN</h5>
-                </div>
+                    <div className="center card">
+                        <h2>Upcoming Cashback:</h2>
+                        <div />
+                        <h5>{toFixed(_totalUpcomingCashback)} USD</h5>
+                    </div>
 
-                <div className="center card">
-                    <h2>Unlock Time:</h2>
-                    <div />
-                    <h5>
-                        {
-                            Number(_unlockTime) > now 
-                                ? dayjs.unix(_unlockTime)
-                                : Number(_unlockTime) > 0 
-                                    ? "Fund has been unlocked"
-                                    : "No active stake"
+                    <div className="center card">
+                        <h2>Staked Balance:</h2>
+                        <div />
+                        <h5>{Number(_stakedAmount).toFixed(2)} CKN</h5>
+                    </div>
 
-                        }
-                    </h5>
-                </div>
+                    <div className="center card">
+                        <h2>Unlock Time:</h2>
+                        <div />
+                        <h5>
+                            {
+                                Number(_unlockTime) > now 
+                                    ? dayjs.unix(_unlockTime)
+                                    : Number(_unlockTime) > 0 
+                                        ? "Fund has been unlocked"
+                                        : "No active stake"
 
-                <div className="center card">
-                    <h2>Total Earned:</h2>
-                    <div />
-                    <h5>0.00 CKN</h5>
+                            }
+                        </h5>
+                    </div>
+
+                    <div className="center card">
+                        <h2>Total Earned:</h2>
+                        <div />
+                        <h5>0.00 CKN</h5>
+                    </div>
                 </div>
-            </div>
-            {
-                Number(window.innerWidth) <= 700
-                    ? (
-                        <div className="center" style={{margin: "0 auto 2rem", padding: "0 2rem"}}>
-                            Please switch to a browser window with width greater than 700px for optimal performance
-                        </div>
-                    )
-                    : <TransactionList userTransactionList={userTransactionList} />
-            }
-            
-        </DashboadContainer>
+                {
+                    Number(window.innerWidth) <= 700
+                        ? (
+                            <div className="center" style={{margin: "0 auto 2rem", padding: "0 2rem"}}>
+                                Please switch to a browser window with width greater than 700px for optimal performance
+                            </div>
+                        )
+                        : <TransactionList userTransactionList={userTransactionList} />
+                }
+                
+            </DashboadContainer>
+        </>
     )
 }
 

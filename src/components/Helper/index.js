@@ -78,7 +78,8 @@ const getNormalTransactions = async (web3, _user) => {
                 value, 
                 nonce, 
                 ethGasUsed, 
-                cashBackEarned: _isUser ? cashBackEarned : "0"
+                cashBackEarned: _isUser ? cashBackEarned : "0",
+                cashbackPercent: _isUser ? "3" : "0"
             };
             nonce--;
             return data;

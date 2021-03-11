@@ -47,6 +47,7 @@
     margin: auto;
     border-radius: 100%;
     border: 2px solid var(--red);
+    cursor: pointer;
 }
 
 .navbar .nav-icons .online { border: 2px solid green; }

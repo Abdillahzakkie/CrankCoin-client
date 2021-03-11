@@ -11,13 +11,12 @@ export function Navbar({ theme }) {
     const context = useContext(web3Context);
     const [navOpen, setNavOpen] = useState(false);
 
-    const { loading } = context;
-
+    const { loading, connectDapp } = context;
     const _active = {
         'padding': '.75rem',
     }
 
-    let Navlist = ['', 'Dashboard', 'Vault', 'Whitepaper', 'FAQ'];
+    let Navlist = ['', 'Dashboard', 'Farm', 'Whitepaper', 'FAQ'];
     Navlist = Navlist.map((item, i) => {
         return (
             <NavLink 
@@ -45,7 +44,7 @@ export function Navbar({ theme }) {
                 <ul>{Navlist}</ul>
             </div>
             <div className="center nav-icons">
-                <span className='center'>
+                <span className='center' onClick={loading ? connectDapp : undefined}>
                     <img src={user} alt="user" className={!loading ? "online": ""}  />
                 </span>
             </div>
