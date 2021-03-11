@@ -1,4 +1,4 @@
-import { FarmVault } from "./FarmVault";
+import { FarmVault } from "./FarmNavbar";
 import { FarmCard } from "./FarmCard";
 
 export const Vault = () => {

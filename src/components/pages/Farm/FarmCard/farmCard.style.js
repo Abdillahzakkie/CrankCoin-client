@@ -40,7 +40,7 @@ export const FarmCardContainer = styled.div`
             font-size: 1.25rem;
         }
 
-        & .btn {
+        .btn {
             background: #000;
             color: var(--white);
             width: 100%;
@@ -49,6 +49,13 @@ export const FarmCardContainer = styled.div`
             border: 1.5px solid var(--mainwhite);
             letter-spacing: var(--mainSpacing);
             font-weight: 900;
+            transition: var(--mainTransition);
+
+            &:hover {
+                color: var(--darkGrey);
+                background: transparent;
+                border: 1px solid #000;
+            }
         }
     }
 

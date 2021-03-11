@@ -6,7 +6,7 @@ import { walletShortner } from "../../../Helper";
 import { NavbarContainer } from '../../../Navbar/navbar.styled'
 import userLogo from '../../../../assets/login/userLogin.jpeg';
 import '../../../Navbar/navbar.css';
-import { FarmVaultContainer } from "./farmVault.style";
+import { FarmVaultContainer } from "./farmNavbar.style";
 
 export const FarmVault = ({ theme }) => {
     const context = useContext(web3Context);
