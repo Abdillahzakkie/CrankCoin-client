@@ -37,7 +37,9 @@ export const FarmVault = ({ theme }) => {
                 <div className="center nav-icons">
                     <div className={navOpen ? 'center nav-list nav-list-mobile' : 'center nav-list' }>
                         <ul className="center">
-                            <button type="button">{userWallet}</button>
+                            <button type="button">
+                                <a href={`https://etherscan.io/address/${user}`} rel="noreferrer" target="_blank">{userWallet}</a>
+                            </button>
                             <button type="button" disabled="disable">Unlock</button>
                             <span className='center' onClick={loading ? connectDapp : undefined}>
                                 <img src={userLogo} alt="user" className={!loading ? "online": ""}  />
