@@ -19,24 +19,20 @@ export const DashboadContainer = styled.div`
             width: 100%;
             height: 175px;
             background: var(--mainWhite);
-            border-top-left-radius: .25rem;
-            border-top-right-radius: 2.5rem;
-            border-bottom-left-radius: 2.5rem;
-            border-bottom-right-radius: .25rem;
-            box-shadow: 5px 5plx 5px var(--darGrey);
+            // border-radius: .25rem 2.5rem .25rem 2.5rem;
             transition: var(--mainTransition);
-            padding: 2.5rem 1rem;
+            padding: 1.5rem 1rem;
 
             &:hover {
-                background: var(--darkGrey);
+                background: var(--lightGrey);
                 cursor: pointer;
                 color: var(--white);
             }
             
             & h5 {
                 margin-left: 1rem;
-                font-wpeight: 500;
-                font-size: 1.5rem
+                font-weight: 500;
+                font-size: 1.25rem
             }
         }
     }

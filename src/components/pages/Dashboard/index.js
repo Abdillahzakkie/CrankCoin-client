@@ -41,59 +41,68 @@ export const Dashboard = () => {
         })()
     }, [loading, web3, user, balanceOf, fromWei, locks, checkRewards, userTransactionList]);
     const now = Date.now();
+    const _unlockDate = dayjs.unix(unlockTime).$d;
+    console.log(_unlockDate);
 
     return (
         <>
             <Navbar />
             <DashboadContainer className="center">
                 <div className="center account-details">
-                    <h1>Account Details: </h1>
+                    <h2>Account Details: </h2>
                 </div>
 
                 <div className="center card-container">
                     <div className="center card">
-                        <h2>Current Balance:</h2>
+                        <h3>Current Balance:</h3>
                         <div />
                         <h5>{toFixed(userBalance)} CKN</h5>
+                        <h5>0.00 USD</h5>
                     </div>
 
                     <div className="center card">
-                        <h2>Claimable Balance:</h2>
+                        <h3>Claimable Balance:</h3>
                         <div />
                         <h5>{Number(getClaimableRewards).toFixed(2)} CKN</h5>
+                        <h5>0.00 USD</h5>
                     </div>
 
                     <div className="center card">
-                        <h2>Upcoming Cashback:</h2>
+                        <h3>Upcoming Cashback:</h3>
                         <div />
+                        <h5>0.00 CKN</h5>
                         <h5>{toFixed(totalUpcomingCashback)} USD</h5>
                     </div>
 
                     <div className="center card">
-                        <h2>Staked Balance:</h2>
+                        <h3>Staked Balance:</h3>
                         <div />
                         <h5>{Number(stakedAmount).toFixed(2)} CKN</h5>
+                        <h5>0.00 USD</h5>
                     </div>
 
                     <div className="center card">
-                        <h2>Unlock Time:</h2>
+                        <h3>Unlock Time:</h3>
                         <div />
-                        <h5>
-                            {
-                                Number(unlockTime) > now 
-                                    ? dayjs.unix(unlockTime)
-                                    : Number(unlockTime) > 0 
-                                        ? "Fund has been unlocked"
-                                        : "No active stake"
+                        <p>
+                            {   _unlockDate.toString()
+                                // dayjs.unix(unlockTime).$d
+                                // Number(unlockTime) > now 
+                                //     ? dayjs.unix(unlockTime)
+                                //     : Number(unlockTime) > 0 
+                                //         ? "Fund has been unlocked"
+                                //         : "No active stake"
 
                             }
-                        </h5>
+                        </p>
+                        <p></p>
                     </div>
 
                     <div className="center card">
-                        <h2>Total Earned:</h2>
+                        <h3>Total Earned:</h3>
                         <div />
                         <h5>0.00 CKN</h5>
+                        <h5>0.00 USD</h5>
                     </div>
                 </div>
                 {

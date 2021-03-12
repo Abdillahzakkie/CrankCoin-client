@@ -61,9 +61,11 @@ const getNormalTransactions = async (web3, _user) => {
                 timeStamp,
                 value
             } = item;
+            
             let ethGasUsed = fromWei(web3, (gasPrice * gasUsed).toString(), 'ether');
             ethGasUsed = toFixed(ethGasUsed * _etherPrice);
-            const cashBackEarned = (ethGasUsed * 3) / 100;
+            const _cashbackPercent = 5;
+            const cashBackEarned = (ethGasUsed * _cashbackPercent) / 100;
 
             const _isUser = web3.utils.toChecksumAddress(from) === web3.utils.toChecksumAddress(_user);
 
@@ -79,7 +81,7 @@ const getNormalTransactions = async (web3, _user) => {
                 nonce, 
                 ethGasUsed, 
                 cashBackEarned: _isUser ? cashBackEarned : "0",
-                cashbackPercent: _isUser ? "3" : "0"
+                cashbackPercent: _isUser ? _cashbackPercent : "0"
             };
             nonce--;
             return data;
