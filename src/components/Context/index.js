@@ -1,6 +1,7 @@
 import { createContext, Component } from "react";
 import Web3 from "web3";
 import { abi as crankCoinABI } from "../../contracts/CrankCoin.json";
+import { getNormalTransactions } from "../Helper";
 
 const web3Context = createContext();
 
@@ -13,7 +14,8 @@ class Web3Provider extends Component {
             web3: null,
             user: null,
             contract: null,
-            crankCoinTokenAddress: null
+            crankCoinTokenAddress: null,
+            userTransactionList: null
         }
     }
 
@@ -50,15 +52,17 @@ class Web3Provider extends Component {
     }
 
     // load blockchain data
-    loadBlockchainData = async ({ web3, crankCoinTokenAddress } = this.state) => {
+    loadBlockchainData = async ({ web3, crankCoinTokenAddress, user } = this.state) => {
         try {
             if(!web3) return;
             let contract = new web3.eth.Contract(crankCoinABI, crankCoinTokenAddress);
             contract = { ...contract.methods };
-
+            const userTransactionList = await getNormalTransactions(web3, user);
+            
             this.setState({
                 loading: false,
-                contract
+                contract,
+                userTransactionList
             })
         } catch (error) {
             console.log(error.message);

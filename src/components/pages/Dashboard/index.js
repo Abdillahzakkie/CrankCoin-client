@@ -5,52 +5,42 @@ import { Navbar } from "../../Navbar";
 import { DashboadContainer } from "./dashboard.styled";
 import { ErrorBoundary } from "../../ErrorBoundary";
 import TransactionList from "../../TransactionList";
-import { getNormalTransactions, toFixed } from "../../Helper";
+import { toFixed } from "../../Helper";
 
 
 export const Dashboard = () => {
     const context = useContext(web3Context);
     const [userBalance, setUserBalance] = useState(0);
-    const [getLock, setLock] = useState(null);
     const [getClaimableRewards, setClaimableRewards] = useState(0);
-    const [userTransactionList, setUserTransactionList] = useState(null);
+    const [stakedAmount, setStakedAmount] = useState(0);
+    const [unlockTime, setUnlockTime] = useState(0);
+    const [totalUpcomingCashback, setTotalUpcomingCashback] = useState(0);
 
-    const { loading, web3, user, balanceOf, fromWei, locks, checkRewards } = context;
+    const { loading, web3, user, balanceOf, fromWei, locks, checkRewards, userTransactionList } = context;
     useEffect(() => {
         if(loading) return;
         let isMounted = true;
         (async () => {
             const _userBalance = await (await balanceOf());
             const _locks = await locks();
+            const _stakedAmount = _locks.amount;
+            const _unlockTime = _locks.unlockTime;
             const _claimRewards = await checkRewards();
-            const _userTransactionList = await getNormalTransactions(web3, user);
-            
+            const _totalUpcomingCashback = userTransactionList.reduce((prev, next) => {
+                prev = Number(prev) + Number(next.cashBackEarned);
+                return prev;
+            }, 0);       
 
             setUserBalance(() => fromWei(_userBalance, "ether"));
-            setLock(() => _locks);
+            setStakedAmount(() => _stakedAmount);
+            setUnlockTime(() => _unlockTime);
             setClaimableRewards(() => fromWei(_claimRewards, "ether"));
-            setUserTransactionList(() => _userTransactionList);
+            setTotalUpcomingCashback(() => _totalUpcomingCashback);
             // eslint-disable-next-line
             return () => isMounted = false;
         })()
-    }, [context, setUserBalance, loading, web3, user, balanceOf, fromWei, setLock, locks, setClaimableRewards, checkRewards]);
-    
-    let _stakedAmount = 0;
-    let _unlockTime;
+    }, [loading, web3, user, balanceOf, fromWei, locks, checkRewards, userTransactionList]);
     const now = Date.now();
-    let _totalUpcomingCashback = 0;
-
-    if(getLock) {
-        _stakedAmount = Number(getLock.amount);
-        _unlockTime = getLock.unlockTime;
-    }
-
-    if(userTransactionList) {
-        _totalUpcomingCashback = userTransactionList.reduce((prev, next) => {
-            prev = Number(prev) + Number(next.cashBackEarned);
-            return prev;
-        }, 0);
-    }
 
     return (
         <>
@@ -76,13 +66,13 @@ export const Dashboard = () => {
                     <div className="center card">
                         <h2>Upcoming Cashback:</h2>
                         <div />
-                        <h5>{toFixed(_totalUpcomingCashback)} USD</h5>
+                        <h5>{toFixed(totalUpcomingCashback)} USD</h5>
                     </div>
 
                     <div className="center card">
                         <h2>Staked Balance:</h2>
                         <div />
-                        <h5>{Number(_stakedAmount).toFixed(2)} CKN</h5>
+                        <h5>{Number(stakedAmount).toFixed(2)} CKN</h5>
                     </div>
 
                     <div className="center card">
@@ -90,9 +80,9 @@ export const Dashboard = () => {
                         <div />
                         <h5>
                             {
-                                Number(_unlockTime) > now 
-                                    ? dayjs.unix(_unlockTime)
-                                    : Number(_unlockTime) > 0 
+                                Number(unlockTime) > now 
+                                    ? dayjs.unix(unlockTime)
+                                    : Number(unlockTime) > 0 
                                         ? "Fund has been unlocked"
                                         : "No active stake"
 
