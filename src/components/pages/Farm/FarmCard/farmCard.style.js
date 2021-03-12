@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const FarmCardContainer = styled.div`
-    grid-template-columns: repeat(2, 1fr);
+    // grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
     padding: 4rem;
-    width: 75%;
+    width: 50%;
 
     .card {
         grid-gap: 1.5rem 0;
@@ -38,6 +38,7 @@ export const FarmCardContainer = styled.div`
             padding: 1rem;
             background: transparent;
             font-size: 1.25rem;
+            text-align: center;
         }
 
         .btn {

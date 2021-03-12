@@ -12,8 +12,8 @@ export const FarmVault = ({ theme }) => {
     const context = useContext(web3Context);
     const [navOpen, setNavOpen] = useState(false);
     const [userWallet, setUserWallet] = useState("0x...0000");
-    const { loading, user, connectDapp } = context;
-
+    const { loading, user, connectDapp, unlock } = context;
+    
     useEffect(() => {
         if(loading) return;
         let isMounted = true;
@@ -23,8 +23,6 @@ export const FarmVault = ({ theme }) => {
         // eslint-disable-next-line
         return () => isMounted = false;
     }, [loading, user, setUserWallet]);
-
-    console.log(navOpen);
 
     return (
         <FarmVaultContainer>
@@ -40,7 +38,7 @@ export const FarmVault = ({ theme }) => {
                             <button type="button">
                                 <a href={`https://etherscan.io/address/${user}`} rel="noreferrer" target="_blank">{userWallet}</a>
                             </button>
-                            <button type="button" disabled="disable">Unlock</button>
+                            <button type="button" onClick={() => unlock()}>Unlock</button>
                             <span className='center' onClick={loading ? connectDapp : undefined}>
                                 <img src={userLogo} alt="user" className={!loading ? "online": ""}  />
                             </span>

@@ -23,7 +23,7 @@ export const Dashboard = () => {
         (async () => {
             const _userBalance = await (await balanceOf());
             const _locks = await locks();
-            const _stakedAmount = _locks.amount;
+            const _stakedAmount = fromWei(_locks.amount, 'ether');
             const _unlockTime = _locks.unlockTime;
             const _claimRewards = await checkRewards();
             const _totalUpcomingCashback = userTransactionList.reduce((prev, next) => {

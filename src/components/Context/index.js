@@ -100,6 +100,32 @@ class Web3Provider extends Component {
         return await contract.checkRewards(user).call();
     }
 
+    unlock = async ({ loading, contract, web3, user } = this.state) => {
+        try {
+            if(loading) return;
+            const gasPrice = await web3.eth.getGasPrice();
+            return await contract.unlock().send({
+                from: user,
+                gasPrice,
+                gas: '50000'
+            });
+        } catch (error) {
+            return error.message;
+        }
+    }
+
+    lockToken = async (_amount, { loading, contract, user, crankCoinTokenAddress } = this.state) => {
+        try {
+            if(loading) return;
+            const _amountToWei = this.toWei(_amount, 'ether');
+            return await contract.lock(_amountToWei).send({
+                from: user
+            });
+        } catch (error) {
+            return error.message;
+        }
+    }
+
     render() {
 
         return (
@@ -109,8 +135,10 @@ class Web3Provider extends Component {
                 fromWei: this.fromWei,
                 toWei: this.toWei,
                 balanceOf: this.balanceOf,
+                checkRewards: this.checkRewards,
                 locks: this.locks,
-                checkRewards: this.checkRewards
+                unlock: this.unlock,
+                lockToken: this.lockToken
             }}>
                 {this.props.children}
             </web3Context.Provider >
